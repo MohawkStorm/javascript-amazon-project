@@ -1,6 +1,7 @@
-// Module inports
+// Imports
 
 import { cart } from "../data/cart.js";
+import { products } from "../data/products.js";
 
 // Generate products in HTMl, products from data/products.js
 
