@@ -1,3 +1,7 @@
+// Module inports
+
+import { cart } from "../data/cart.js";
+
 // Generate products in HTMl, products from data/products.js
 
 let productsHTML = ``;
