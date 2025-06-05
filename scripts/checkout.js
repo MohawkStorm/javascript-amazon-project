@@ -1,6 +1,6 @@
 // Imports
 
-import { cart, removeFromCart } from "../data/cart.js";
+import { cart, removeFromCart, calculateCartQuantity } from "../data/cart.js";
 import { products } from "../data/products.js";
 import { formatCurrency } from "./utils/money.js";
 
@@ -119,13 +119,10 @@ document.querySelectorAll(".js-delete-link").forEach((link) => {
 // Quantity updater function
 
 function updateCheckoutQuantity() {
-  let checkoutQuantity = 0;
-  cart.forEach((cartItem) => {
-    checkoutQuantity += cartItem.quantity;
-  });
+  let cartQuantity = calculateCartQuantity();
   document.querySelector(
     ".js-checkout-header-items"
-  ).innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${checkoutQuantity} items</a>)`;
+  ).innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${cartQuantity} items</a>)`;
 }
 
 updateCheckoutQuantity();
