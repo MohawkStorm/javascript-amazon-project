@@ -3,11 +3,11 @@
 import {
   cart,
   removeFromCart,
-  calculateCartQuantity,
   updateQuantity,
   updateDeliveryOption,
 } from "../../data/cart.js";
 import { getProduct } from "../../data/products.js";
+import { renderCheckoutHeader } from "../checkout/checkoutHeader.js";
 import { renderPaymentSummary } from "./paymentSummary.js";
 import {
   deliveryOptions,
@@ -125,7 +125,7 @@ export function renderOrderSummary() {
       quantityLabel.innerHTML = newQuantity;
 
       renderPaymentSummary();
-      updateCheckoutQuantity();
+      renderCheckoutHeader();
     });
   });
 
@@ -140,20 +140,9 @@ export function renderOrderSummary() {
       );
       container.remove();
       renderPaymentSummary();
-      updateCheckoutQuantity();
+      renderCheckoutHeader();
     });
   });
-
-  // Checkout items quantity header
-
-  function updateCheckoutQuantity() {
-    let cartQuantity = calculateCartQuantity();
-    document.querySelector(
-      ".js-checkout-header-items"
-    ).innerHTML = `Checkout (<a class="return-to-home-link" href="amazon.html">${cartQuantity} items</a>)`;
-  }
-
-  updateCheckoutQuantity();
 
   // delivery date options
 
@@ -204,4 +193,5 @@ export function renderOrderSummary() {
   });
 
   renderPaymentSummary();
+  renderCheckoutHeader();
 }
