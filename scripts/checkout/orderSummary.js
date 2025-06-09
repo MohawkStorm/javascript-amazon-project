@@ -95,6 +95,18 @@ export function renderOrderSummary() {
       const container = document.querySelector(
         `.js-cart-item-container-${productId}`
       );
+
+      const currentQuantity = document.querySelector(
+        `.js-quantity-label-${productId}`
+      ).textContent;
+      console.log(currentQuantity);
+
+      const inputQuantity = document.querySelector(
+        `.js-quantity-input-${productId}`
+      );
+
+      inputQuantity.value = currentQuantity;
+
       container.classList.add("is-editing-quantity");
     });
   });
@@ -113,16 +125,23 @@ export function renderOrderSummary() {
         `.js-quantity-input-${productId}`
       );
       const newQuantity = Number(inputQuantity.value);
-      updateQuantity(productId, newQuantity);
 
-      const quantityLabel = document.querySelector(
-        `.js-quantity-label-${productId}`
-      );
+      if (newQuantity < 1 || newQuantity >= 1000) {
+        alert("Quantity must be at least 1 and less than 1000 ");
+        return;
+      } else {
+        updateQuantity(productId, newQuantity);
 
-      quantityLabel.innerHTML = newQuantity;
+        const quantityLabel = document.querySelector(
+          `.js-quantity-label-${productId}`
+        );
 
-      renderPaymentSummary();
-      renderCheckoutHeader();
+        quantityLabel.innerHTML = newQuantity;
+
+        renderPaymentSummary();
+        renderCheckoutHeader();
+        renderOrderSummary();
+      }
     });
   });
 
@@ -138,6 +157,7 @@ export function renderOrderSummary() {
       container.remove();
       renderPaymentSummary();
       renderCheckoutHeader();
+      renderOrderSummary();
     });
   });
 
@@ -183,6 +203,7 @@ export function renderOrderSummary() {
       const { productId, deliveryOptionId } = element.dataset;
       updateDeliveryOption(productId, deliveryOptionId);
       renderOrderSummary();
+      renderPaymentSummary();
     });
   });
 
