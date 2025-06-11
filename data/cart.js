@@ -1,13 +1,21 @@
-export let cart = JSON.parse(localStorage.getItem("cart")) || [];
+export let cart;
+
+loadFromStorage();
+
+export function loadFromStorage() {
+  cart = JSON.parse(localStorage.getItem("cart")) || [];
+}
 
 function saveToStorage() {
   localStorage.setItem("cart", JSON.stringify(cart));
 }
 
 export function addToCart(productId) {
-  const quantity = Number(
-    document.querySelector(`.js-product-quantity-selector-${productId}`).value
+  const input = document.querySelector(
+    `.js-product-quantity-selector-${productId}`
   );
+  const quantity = input ? Number(input.value) : 1;
+
   let matchingItem;
 
   cart.forEach((cartItem) => {
