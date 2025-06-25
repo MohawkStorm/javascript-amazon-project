@@ -103,7 +103,6 @@ export function renderOrderSummary() {
       const currentQuantity = document.querySelector(
         `.js-quantity-label-${productId}`
       ).textContent;
-      console.log(currentQuantity);
 
       const inputQuantity = document.querySelector(
         `.js-quantity-input-${productId}`
