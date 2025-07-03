@@ -128,7 +128,7 @@ export function renderOrderSummary() {
         alert("Quantity must be at least 1 and less than 1000 ");
         return;
       } else {
-        updateQuantity(productId, newQuantity);
+        cart.updateQuantity(productId, newQuantity);
 
         const quantityLabel = document.querySelector(
           `.js-quantity-label-${productId}`
