@@ -64,8 +64,10 @@ class Appliance extends Product {
 
   constructor(productDetails) {
     super(productDetails);
-    this.instructionsLink = productDetails.instructionsLink;
-    this.warrantyLink = productDetails.warrantyLink;
+    this.instructionsLink =
+      productDetails.instructionsLink || "images/appliance-instructions.png";
+    this.warrantyLink =
+      productDetails.warrantyLink || "images/appliance-warranty.png";
   }
 
   extraInfoHTML() {
@@ -82,7 +84,9 @@ export function loadProducts(fun) {
     products = JSON.parse(xhr.response).map((productDetails) => {
       if (productDetails.type === "clothing") {
         return new Clothing(productDetails);
-      } else if (productDetails.type === "appliance") {
+      } else if (productDetails.keywords.includes("appliances")) {
+        console.log("hello");
+
         return new Appliance(productDetails);
       }
       return new Product(productDetails);
