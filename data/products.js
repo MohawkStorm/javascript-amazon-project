@@ -75,6 +75,8 @@ class Appliance extends Product {
   }
 }
 
+// ***** Backend Products ***** //
+
 export let products = [];
 
 export function loadProducts(fun) {
