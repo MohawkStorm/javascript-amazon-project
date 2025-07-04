@@ -87,8 +87,6 @@ export function loadProducts(fun) {
       if (productDetails.type === "clothing") {
         return new Clothing(productDetails);
       } else if (productDetails.keywords.includes("appliances")) {
-        console.log("hello");
-
         return new Appliance(productDetails);
       }
       return new Product(productDetails);
