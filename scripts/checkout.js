@@ -14,12 +14,12 @@ async function loadPage() {
     const value = await new Promise((resolve, reject) => {
       // throw "error2";
       loadCart(() => {
-        reject("error3");
+        // reject("error3");
         resolve("value1");
       });
     });
   } catch (error) {
-    console.log("Unexpected error. Please try again later.");
+    console.log("Actual error:", error);
   }
 
   renderOrderSummary();
