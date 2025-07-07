@@ -83,6 +83,8 @@ export function renderPaymentSummary() {
         console.log("Unexpected error, Try again later.");
       }
 
+      localStorage.removeItem("cart-oop");
+
       window.location.href = "orders.html";
     });
 }
